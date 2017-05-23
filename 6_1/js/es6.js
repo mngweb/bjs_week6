@@ -71,7 +71,7 @@ document.querySelector("#btn").addEventListener("click", function(e) {
     getJSON(API_URL, function(data) {
         console.log("Sukces");
 
-        let personMap = new WeakMap();
+        const personMap = new WeakMap();
         window.personMap = personMap;     // AD. PRÓBA
 
         data.forEach(function(person) {
