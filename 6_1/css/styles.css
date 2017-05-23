@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.response{
+    margin: 20px 0;
+    padding: 20px;
+    background-color: lightgoldenrodyellow;
+}
+
+.response li{
+    list-style-type: none;
+}
+
+.personInfo{
+    border: 2px solid brown;
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.personInfo > h2{
+    border-bottom: 1px solid black;
+}
+
+.personInfo > div{
+    display: flex;
+}
+
+.btn{
+    padding: 5px;
+}
+

@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.progress {
+  width: 50%;
+  height: 30px;
+  border: 2px #ececec solid;
+  margin: 5px;
+}
+.progress__percentage {
+  width: 0;
+  height: 30px;
+  background-color: #29D58E;
+  position: relative;
+  top: -2px;
+  left: -2px;
+}
+.progress__percentage[style*='width: 100%'] {
+  width: calc(100% + 4px) !important;
+}
+
+.images{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img{
+  width: 30%;
+  opacity: 0.8;
+  margin: 5px;
+  transition: all 0.7s ease;
+}
+
+
+.img:hover{
+  cursor: pointer;
+  opacity: 1;
+
+  transform:scale(1.2);
+  z-index: 9999;
+  border-radius:50%; 
+  box-shadow: 0 10px 6px -6px grey;  
+}
