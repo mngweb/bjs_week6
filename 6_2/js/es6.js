@@ -24,10 +24,7 @@ https://pastebin.com/q4MC6zXJ
 		
 			if(arguments.length === 0){
 				throw new Error("Podaj parametr lub parametry w metodzie myFrom.");
-			} else if(arguments.length > 3){
-				throw new Error("Metoda myFrom przyjmuje maksymalnie 3 argumenty.");
 			}
-
 
 			if(arrayLike === null || typeof arrayLike === "undefined" || typeof arrayLike.length !== 'number'){
 				throw new Error("Podaj obiekt tablicopodobny.");
