@@ -62,15 +62,16 @@ const API_URL = "http://code.eduweb.pl/bootcamp/json/";
 
 document.querySelector("#btn").addEventListener("click", function(e) {
 
-    let result = document.querySelector("#response"),
-        ul = document.createElement("ul");
-        
-    result.innerHTML = "";
-    result.appendChild(ul);
-
     getJSON(API_URL, function(data) {
         console.log("Sukces");
+	    
+        var result = document.querySelector("#response"),
+            ul = document.createElement("ul");
+            
+        result.innerHTML = "";
+        result.appendChild(ul);        
 
+	    
         const personMap = new WeakMap();
         window.personMap = personMap;     // AD. PRÓBA
 
