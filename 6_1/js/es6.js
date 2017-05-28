@@ -89,7 +89,7 @@ document.querySelector("#btn").addEventListener("click", function(e) {
 
                 let oddClick = false;
 
-                li.onclick = function(){
+                li.onclick = function(event){
                                         
                     // PYTANIE 1: Czy w tym przykładzie WERSJA 1 (bez WeakMap gdzie od razu korzystam z Person) byłaby gorsza od WERSJI 2 (z WeakMap) - jeśli tak, to pod jakim względem?
                     
