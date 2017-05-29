@@ -1,19 +1,22 @@
-/* 1. Dekompozycja obiektu z danych JSON
+/* 1. Wiązanie elementów DOM z danymi z użyciem WeakMap
 Pamiętasz funkcję getJSON, którą stworzyłeś w tygodniu trzecim? Za jej pomocą pobierz
 dane JSON z tego adresu: http://code.eduweb.pl/bootcamp/json/. Następnie w funkcji
-callback, gdzie te dane będą już zamienione na obiekt JavaScript, wykorzystaj
-dekompozycję (destructuring), aby utworzyć za pomocą zapisu ES6 nowe zmienne, które
-przechowywać będą dane spod kluczy: name, username, email, address.geo[0],
-address.geo[1], website i company.name. Powyższe dane wstaw do template stringu,
-dodając odpowiednie etykiety jak np. Imię, Firma czy Adres e-mail wraz z niezbędnym
-kodem HTML, np. w formie linku dla website. W przypadku współrzędnych
-geograficznych, wstaw je do takiego linku: <a href=“http://bing.com/maps/
-default.aspx?cp=LAT~LON”>Pokaż na mapie</a>, gdzie LAT i LON zastąpisz kolejno
-przez address.geo[0] i address.geo[1], które na tym etapie powinny być już w
-zmiennych. Powyższą operację wykonaj oczywiście dla wszystkich obiektów z tablicy.
-Cały sformatowany ciąg wraz ze wstawkami HTML wstaw na stronę. Sam proces
-pobierania danych Ajaxem i dalszego ich formatowania, możesz wywołać za pomocą
-kliknięcia jakiegoś przycisku.
+callback, gdzie te dane będą już zamienione na tablicę JavaScript, dla każdego elementu
+tej tablicy (będzie to obiekt) utwórz dynamicznie element <li> i wstaw go na stronę, do
+wcześniej utworzonego elementu <ul>. W elemencie <li> wstaw na początku wyłącznie
+wartość name z obiektu, ale przypisz też do tego elementu obsługę zdarzenia click. Kiedy
+element zostanie kliknięty, zamień jego wewnętrzny tekst na name oraz email, np. w ten
+sposób:
+<li>Leanne Graham <a href=“mailto:Sincere@april.biz">Sincere@april.biz</a></li>.
+Być może zastanawiasz się, jak powiązać element <li> z obiektem, który przechowuje
+potrzebne dla niego dane. W tym celu wykorzystaj WeakMap, gdzie jako klucz podasz
+element z drzewa DOM, czyli <li>, a jako wartość obiekt z danymi. Dzięki temu po
+kliknięciu na element <li>, w funkcji obsługi tego zdarzenia pod this znajdzie się
+odwołanie do tego elementu DOM. Kiedy przekażesz this do WeakMapy, otrzymasz w
+zamian obiekt z pozostałymi danymi. To z nich wyciągniesz name i email, aby
+zaktualizować tekst elementu <li>. Plusem tego rozwiązania jest fakt, że jeśli element
+<li> zostanie usunięty, to również obiekt z danymi zostanie usunięty z pamięci, bo takie
+zadanie realizuje właśnie WeakMap.
 */
 
 
@@ -71,9 +74,7 @@ document.querySelector("#btn").addEventListener("click", function(e) {
         result.innerHTML = "";
         result.appendChild(ul);        
 
-	    
         const personMap = new WeakMap();
-        window.personMap = personMap;     // AD. PRÓBA
 
         data.forEach(function(person) {
             
@@ -91,15 +92,7 @@ document.querySelector("#btn").addEventListener("click", function(e) {
 
                 li.onclick = function(event){
                                         
-                    // PYTANIE 1: Czy w tym przykładzie WERSJA 1 (bez WeakMap gdzie od razu korzystam z Person) byłaby gorsza od WERSJI 2 (z WeakMap) - jeśli tak, to pod jakim względem?
-                    
-                    //// WERSJA 1 (zwykła bez WeakMap)
-                    // let {name, email} = person;
-                    
-                    //// WERSJA 2 (z WeakMap) - personMap.get(this) zamiast samego person
                     let {name, email} = personMap.get(this);
-                    
-
 
                     //aby email znikał gdy kliknę jeszcze raz w li (ale nie w sam email)
                     if(event.target.nodeName !== "A"){
@@ -112,16 +105,6 @@ document.querySelector("#btn").addEventListener("click", function(e) {
                             this.innerHTML = `${name}`;
                         }
                     }
-
-
-
-                    // PRÓBA (tutaj w obsłudze klkniecia dopisalam testowo usuwanie po 1 sekundzie pierwszego elementu listy za pomocą removeChild i po tej 1sek jak wpiszę w konsoli "personMap", to widać, że ten element zniknął z WeakMap, bo jest 9 a nie 10 elementów)
-                    // PYTANIE 2 (dotyczy powyższej PRÓBY): Czy na przykładzie tego kodu widać w którym momencie po tym jak skorzystamy z personMap.get() tracimy ostatnie referencje do tych elementów li skoro w mojej PRÓBIE element został usunięty z WeakMap? Czy to removeChild() wpływa jakoś, źe ostatnia referencja znika?
-                    setTimeout(function(){
-                        var myli = document.querySelector("li:first-child");
-                        myli.parentNode.removeChild(myli);
-                        myli = null;
-                    }, 1000)
 
                 }
             })();
