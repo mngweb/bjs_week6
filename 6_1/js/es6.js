@@ -75,6 +75,7 @@ document.querySelector("#btn").addEventListener("click", function(e) {
         result.appendChild(ul);        
 
         const personMap = new WeakMap();
+	// window.personMap = personMap;     // AD. PRÓBA	    
 
         data.forEach(function(person) {
             
@@ -105,6 +106,8 @@ document.querySelector("#btn").addEventListener("click", function(e) {
                             this.innerHTML = `${name}`;
                         }
                     }
+		
+		    // this.parentNode.removeChild(this);   // PRÓBA
 
                 }
             })();
