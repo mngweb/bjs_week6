@@ -115,7 +115,7 @@ następująco: https://pastebin.com/jM7N6NTn
 
             console.log("Obrazy wczytane.");
 
-            let docFragm = await createImages(good_urls);
+            let docFragm = createImages(good_urls);
 
             appendImages(docFragm);
 
