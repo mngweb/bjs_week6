@@ -1,5 +1,5 @@
 /* 4. Funkcja asynchroniczna dla ładowania obrazów
-Przepisz utworzony w poprzednim tygodniu w zadaniu czwartym kod tak, aby korzystał z
+Przepisz utworzony w poprzednim tygodniu w zadaniu piątym kod tak, aby korzystał z
 funkcji asynchronicznej (async await). Oczywiście nadal będzie ona współpracować z
 Promise, ale samo jej użycie będzie inne niż w przypadku .then i .catch. Zadbaj równieżo to, aby w ciele funkcji asynchronicznej znalazł się blok try...catch(), który przechwyci
 ewentualne błędy, gdy Promise zakończy się w stanie rejected.
