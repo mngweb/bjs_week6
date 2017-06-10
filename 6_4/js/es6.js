@@ -1,12 +1,9 @@
-/* 5. Preloader obrazów z użyciem Promise
-W lekcjach czwartego tygodnia, w sekcji Ajax w Praktyce oraz model Pub/Sub znajduje się
-lekcja pt. Praktyczny przykład: Preloader obrazów. Utwórz podobne rozwiązanie, ale nie
-korzystając z jQuery, a z natywnych metod DOM API. Zamiast obiektu Deferred z jQuery,
-wykorzystaj Promise dostępną w ES6. Załadowane w tle obrazy zamień następnie na
-elementy <img> i wstaw na stronę. Przykładowe użycie tego kodu powinno wyglądać
-następująco: https://pastebin.com/jM7N6NTn
+/* 4. Funkcja asynchroniczna dla ładowania obrazów
+Przepisz utworzony w poprzednim tygodniu w zadaniu czwartym kod tak, aby korzystał z
+funkcji asynchronicznej (async await). Oczywiście nadal będzie ona współpracować z
+Promise, ale samo jej użycie będzie inne niż w przypadku .then i .catch. Zadbaj równieżo to, aby w ciele funkcji asynchronicznej znalazł się blok try...catch(), który przechwyci
+ewentualne błędy, gdy Promise zakończy się w stanie rejected.
 */
-
 
 
 (function(){
